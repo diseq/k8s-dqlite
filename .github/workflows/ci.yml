@@ -77,17 +77,17 @@ jobs:
           export CGO_LDFLAGS_ALLOW="-Wl,-z,now"
           go build -o k8s-dqlite -tags libsqlite3,dqlite k8s-dqlite.go
         
-      #- uses: actions/upload-artifact@v2
-      #  with:
-      #    name: redisraft
-      #    path: ./redisraft.so
+      - uses: actions/upload-artifact@v2
+        with:
+          name: k8s-dqlite
+          path: ./k8s-dqlite
           
-      #- uses: ncipollo/release-action@v1
-      #  with:
-      #    #artifacts: "release.tar.gz,foo/*.txt"
-      #    artifacts: "./redisraft.so"
-      #    tag: 'latest'
-      #    allowUpdates: true
-      #    token: ${{ secrets.GITHUB_TOKEN }}          
+      - uses: ncipollo/release-action@v1
+        with:
+          #artifacts: "release.tar.gz,foo/*.txt"
+          artifacts: "./k8s-dqlite"
+          tag: 'latest'
+          allowUpdates: true
+          token: ${{ secrets.GITHUB_TOKEN }}          
 
       - uses: gautamkrishnar/keepalive-workflow@master

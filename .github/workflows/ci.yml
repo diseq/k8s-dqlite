@@ -30,12 +30,19 @@ jobs:
           submodules: true
           fetch-depth: 0    
     
-      - name: Install build dependencies
-        run: |
-          sudo apt-get install -y build-essential autoconf automake libtool cmake lcov
+      - name: Setup Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: "1.16.10"
+    
+      #- name: Install build dependencies
+      #  run: |
+      #    sudo apt-get install -y build-essential autoconf automake libtool cmake lcov
 
       - name: Build
-        run: go build -o k8s-dqlite -tags libsqlite3,dqlite k8s-dqlite.go
+        run: |
+          export CGO_LDFLAGS_ALLOW="-Wl,-z,now"
+          go build -o k8s-dqlite -tags libsqlite3,dqlite k8s-dqlite.go
         
       #- uses: actions/upload-artifact@v2
       #  with:

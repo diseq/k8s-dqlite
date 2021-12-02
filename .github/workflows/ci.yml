@@ -51,7 +51,7 @@ jobs:
 
       - name: Install sqlite3
         run: |
-          apt-get install -y libsqlite3-dev
+          sudo apt-get install -y libsqlite3-dev
 
       - name: Install dqlite
         run: |

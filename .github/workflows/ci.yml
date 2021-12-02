@@ -53,6 +53,16 @@ jobs:
         run: |
           sudo apt-get install -y libsqlite3-dev
 
+      - name: Install libuv
+        run: |
+          git clone https://github.com/libuv/libuv
+          cd libuv
+          sh autogen.sh          
+          ./configure
+          make
+          make check
+          sudo make install
+
       - name: Install dqlite
         run: |
           git clone https://github.com/canonical/dqlite
